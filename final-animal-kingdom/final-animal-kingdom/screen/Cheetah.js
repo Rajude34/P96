@@ -1,0 +1,125 @@
+import React, { Component } from 'react';
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ImageBackground,
+  Platform,
+  StatusBar,
+  TouchableOpacity,
+  Image
+} from 'react-native';
+import {Audio} from 'expo-av'
+export default class CheetahScreen extends Component {
+     playSound =  () => {
+     Audio.Sound.createAsync(
+       
+    require('../assets/Cheetah2.mp3'),
+    // { uri: 'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/bf8d694e39781253113d94c314048b75'  },
+    { shouldPlay: true }
+  );
+  }
+  render() {
+    return (
+      
+      <View style={styles.container}>
+      
+        <SafeAreaView style={styles.droidSafeArea} />
+         
+        <Image
+              source={require('../assets/Cheetah1.png')}
+              style={{
+                width: 150,
+                height: 200,
+                alignSelf: 'center',
+              }}></Image> 
+<View>
+              <TouchableOpacity onPress={() =>
+                  this.playSound()}>
+              <Image source={require("../assets/Sound.jpg")} style={styles.iconImage}></Image>
+              </TouchableOpacity>
+              </View>
+              <View>
+        <Text style={styles.routeText}> The planet's fastest land animal is built for super speed, rather than stamina.</Text>
+        <Text style={styles.routeText}> When they do stir, cheetahs can accelerate faster than most sports cars.</Text>
+        <Text style={styles.routeText}> Cheetahs have a unique social life among cats.</Text>
+</View>
+<View>
+              <TouchableOpacity onPress={() =>
+                  this.props.navigation.navigate('Home')}>
+              <Image source={require("../assets/Back.png")} style={styles.BackImage}></Image>
+              </TouchableOpacity>
+              </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    alignSelf: 'center',
+    marginTop: 100,
+    backgroundColor: 'orange'
+  },
+  droidSafeArea: {
+    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    width:300,
+    height:300,
+  },
+  titleBar: {
+    flex: 0.15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  titleText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  shift:{
+  marginTop:80,
+  alignItems:'center',
+  justifyContent:'center',
+  backgroundColor:'white',
+  },
+  routeText: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: "black",
+        marginTop: 0,
+        paddingLeft: 25,
+        
+    },
+    iconImage: {
+        height: 100,
+        width: 50,
+        resizeMode: "contain",
+        right: 20,
+        top: -23,
+        marginLeft: 110
+    },
+    BackImage: {
+        height: 100,
+        width: 75,
+        resizeMode: "contain",
+        right: 20,
+        top: -10,
+        marginLeft: 110
+    },
+
+    back: {
+        height: 100,
+        width: 100,
+        resizeMode: "contain",
+        right: 20,
+        top: -10,
+        marginLeft: 10
+    },
+});
+
